@@ -5,11 +5,11 @@
 //
 // File: ert_main.cpp
 //
-// Code generated for Simulink model 'sine'.
+// Code generated for Simulink model 'cosine'.
 //
-// Model version                  : 1.1
+// Model version                  : 1.2
 // Simulink Coder version         : 9.3 (R2020a) 18-Nov-2019
-// C/C++ source code generated on : Tue Oct 13 22:57:36 2020
+// C/C++ source code generated on : Tue Oct 13 23:33:44 2020
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Generic->Unspecified (assume 32-bit Generic)
@@ -18,10 +18,11 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-#include "sine.h"
-#include "sine_private.h"
+#include "cosine.h"
+#include "cosine_private.h"
 #include "rtwtypes.h"
 #include "limits.h"
+#include "rt_nonfinite.h"
 #include "linuxinitialize.h"
 #define UNUSED(x)                      x = x
 #define NAMELEN                        16
@@ -41,13 +42,13 @@ void *threadJoinStatus;
 int terminatingmodel = 0;
 void *baseRateTask(void *arg)
 {
-  runModel = (rtmGetErrorStatus(sine_M) == (NULL));
+  runModel = (rtmGetErrorStatus(cosine_M) == (NULL));
   while (runModel) {
     sem_wait(&baserateTaskSem);
-    sine_step();
+    cosine_step();
 
     // Get model outputs here
-    stopRequested = !((rtmGetErrorStatus(sine_M) == (NULL)));
+    stopRequested = !((rtmGetErrorStatus(cosine_M) == (NULL)));
     runModel = !stopRequested;
   }
 
@@ -60,7 +61,7 @@ void *baseRateTask(void *arg)
 void exitFcn(int sig)
 {
   UNUSED(sig);
-  rtmSetErrorStatus(sine_M, "stopping the model");
+  rtmSetErrorStatus(cosine_M, "stopping the model");
 }
 
 void *terminateTask(void *arg)
@@ -75,7 +76,7 @@ void *terminateTask(void *arg)
   // Disable rt_OneStep() here
 
   // Terminate model
-  sine_terminate();
+  cosine_terminate();
   sem_post(&stopSem);
   return NULL;
 }
@@ -86,10 +87,10 @@ int main(int argc, char **argv)
   UNUSED(argv);
   void slros_node_init(int argc, char** argv);
   slros_node_init(argc, argv);
-  rtmSetErrorStatus(sine_M, 0);
+  rtmSetErrorStatus(cosine_M, 0);
 
   // Initialize model
-  sine_initialize();
+  cosine_initialize();
 
   // Call RTOS Initialization function
   myRTOSInit(0.2, 0);

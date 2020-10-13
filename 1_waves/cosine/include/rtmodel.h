@@ -5,11 +5,11 @@
 //
 // File: rtmodel.h
 //
-// Code generated for Simulink model 'sine'.
+// Code generated for Simulink model 'cosine'.
 //
-// Model version                  : 1.1
+// Model version                  : 1.2
 // Simulink Coder version         : 9.3 (R2020a) 18-Nov-2019
-// C/C++ source code generated on : Tue Oct 13 22:57:36 2020
+// C/C++ source code generated on : Tue Oct 13 23:33:44 2020
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Generic->Unspecified (assume 32-bit Generic)
@@ -18,7 +18,7 @@
 //
 #ifndef RTW_HEADER_rtmodel_h_
 #define RTW_HEADER_rtmodel_h_
-#include "sine.h"
+#include "cosine.h"
 
 // Macros generated for backwards compatibility
 #ifndef rtmGetStopRequested

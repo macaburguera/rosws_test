@@ -1,10 +1,10 @@
 <package>
-  <name>sine</name>
+  <name>cosine</name>
   <version>1.0.0</version>
   <description>
-  This package is generated from sine Simulink model.
+  This package is generated from cosine Simulink model.
   </description>
-  <maintainer email="macarenaburguera@gmail.com">Macarena</maintainer>
+  <maintainer email="rosuser@test.com">ROS User</maintainer>
   <license>BSD</license>
 
   <buildtool_depend>catkin</buildtool_depend>

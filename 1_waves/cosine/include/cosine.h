@@ -3,28 +3,29 @@
 // course requirements at degree granting institutions only.  Not for
 // government, commercial, or other organizational use.
 //
-// File: sine.h
+// File: cosine.h
 //
-// Code generated for Simulink model 'sine'.
+// Code generated for Simulink model 'cosine'.
 //
-// Model version                  : 1.1
+// Model version                  : 1.2
 // Simulink Coder version         : 9.3 (R2020a) 18-Nov-2019
-// C/C++ source code generated on : Tue Oct 13 22:57:36 2020
+// C/C++ source code generated on : Tue Oct 13 23:33:44 2020
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Generic->Unspecified (assume 32-bit Generic)
 // Code generation objectives: Unspecified
 // Validation result: Not run
 //
-#ifndef RTW_HEADER_sine_h_
-#define RTW_HEADER_sine_h_
-#include <math.h>
+#ifndef RTW_HEADER_cosine_h_
+#define RTW_HEADER_cosine_h_
 #include <stddef.h>
 #include "rtwtypes.h"
 #include "rtw_continuous.h"
 #include "rtw_solver.h"
 #include "slros_initialize.h"
-#include "sine_types.h"
+#include "cosine_types.h"
+#include "rtGetInf.h"
+#include "rt_nonfinite.h"
 
 // Macros for accessing real-time model data structure
 #ifndef rtmGetErrorStatus
@@ -43,32 +44,36 @@
 # define rtmGetTPtr(rtm)               ((rtm)->Timing.t)
 #endif
 
+// Block signals (default storage)
+typedef struct {
+  SL_Bus_cosine_std_msgs_Float64 In1;  // '<S4>/In1'
+} B_cosine_T;
+
 // Block states (default storage) for system '<Root>'
 typedef struct {
   ros_slros_internal_block_Publ_T obj; // '<S2>/SinkBlock'
-} DW_sine_T;
+  ros_slros_internal_block_Subs_T obj_n;// '<S3>/SourceBlock'
+  real_T TimeStampA;                   // '<Root>/Derivative'
+  real_T LastUAtTimeA;                 // '<Root>/Derivative'
+  real_T TimeStampB;                   // '<Root>/Derivative'
+  real_T LastUAtTimeB;                 // '<Root>/Derivative'
+} DW_cosine_T;
 
 // Parameters (default storage)
-struct P_sine_T_ {
-  SL_Bus_sine_std_msgs_Float64 Constant_Value;// Computed Parameter: Constant_Value
-                                                 //  Referenced by: '<S1>/Constant'
+struct P_cosine_T_ {
+  SL_Bus_cosine_std_msgs_Float64 Out1_Y0;// Computed Parameter: Out1_Y0
+                                            //  Referenced by: '<S4>/Out1'
 
-  real_T SineWave_Amp;                 // Expression: 1
-                                          //  Referenced by: '<Root>/Sine Wave'
+  SL_Bus_cosine_std_msgs_Float64 Constant_Value;// Computed Parameter: Constant_Value
+                                                   //  Referenced by: '<S3>/Constant'
 
-  real_T SineWave_Bias;                // Expression: 0
-                                          //  Referenced by: '<Root>/Sine Wave'
-
-  real_T SineWave_Freq;                // Expression: 1
-                                          //  Referenced by: '<Root>/Sine Wave'
-
-  real_T SineWave_Phase;               // Expression: 0
-                                          //  Referenced by: '<Root>/Sine Wave'
+  SL_Bus_cosine_std_msgs_Float64 Constant_Value_c;// Computed Parameter: Constant_Value_c
+                                                     //  Referenced by: '<S1>/Constant'
 
 };
 
 // Real-time Model Data Structure
-struct tag_RTM_sine_T {
+struct tag_RTM_cosine_T {
   const char_T *errorStatus;
   RTWSolverInfo solverInfo;
 
@@ -94,7 +99,21 @@ extern "C" {
 
 #endif
 
-  extern P_sine_T sine_P;
+  extern P_cosine_T cosine_P;
+
+#ifdef __cplusplus
+
+}
+#endif
+
+// Block signals (default storage)
+#ifdef __cplusplus
+
+extern "C" {
+
+#endif
+
+  extern B_cosine_T cosine_B;
 
 #ifdef __cplusplus
 
@@ -102,7 +121,7 @@ extern "C" {
 #endif
 
 // Block states (default storage)
-extern DW_sine_T sine_DW;
+extern DW_cosine_T cosine_DW;
 
 #ifdef __cplusplus
 
@@ -111,9 +130,9 @@ extern "C" {
 #endif
 
   // Model entry point functions
-  extern void sine_initialize(void);
-  extern void sine_step(void);
-  extern void sine_terminate(void);
+  extern void cosine_initialize(void);
+  extern void cosine_step(void);
+  extern void cosine_terminate(void);
 
 #ifdef __cplusplus
 
@@ -127,7 +146,7 @@ extern "C" {
 
 #endif
 
-  extern RT_MODEL_sine_T *const sine_M;
+  extern RT_MODEL_cosine_T *const cosine_M;
 
 #ifdef __cplusplus
 
@@ -148,11 +167,13 @@ extern "C" {
 //
 //  Here is the system hierarchy for this model
 //
-//  '<Root>' : 'sine'
-//  '<S1>'   : 'sine/Blank Message'
-//  '<S2>'   : 'sine/Publish'
+//  '<Root>' : 'cosine'
+//  '<S1>'   : 'cosine/Blank Message'
+//  '<S2>'   : 'cosine/Publish'
+//  '<S3>'   : 'cosine/Subscribe'
+//  '<S4>'   : 'cosine/Subscribe/Enabled Subsystem'
 
-#endif                                 // RTW_HEADER_sine_h_
+#endif                                 // RTW_HEADER_cosine_h_
 
 //
 // File trailer for generated code.
