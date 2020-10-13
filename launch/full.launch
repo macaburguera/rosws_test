@@ -1,7 +1,7 @@
 <launch>
 	<include file="$(find sine)/launch/sine.launch"/>
 	<include file="$(find cosine)/launch/cosine.launch"/>
-	<include file="$(find turtle_publisher)/launch/turtle_publiser.launch"/>
+	<include file="$(find turtle_publisher)/launch/turtle_publisher.launch"/>
 	<node
 	pkg = "turtlesim"
 	type = "turtlesim_node"
