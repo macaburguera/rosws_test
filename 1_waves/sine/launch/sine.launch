@@ -1,0 +1,12 @@
+<launch>
+	<node
+	name = "sine"
+	type = "sine_node"
+	pkg = "sine"
+	output = "screen"
+	respawn = "true"
+	>
+	</node>
+	
+
+</launch>

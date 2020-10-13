@@ -1,0 +1,12 @@
+<launch>
+	<node
+	name = "cosine"
+	type = "cosine_node"
+	pkg = "cosine"
+	output = "screen"
+	respawn = "true"
+	>
+	</node>
+	
+
+</launch>
