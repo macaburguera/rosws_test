@@ -1,0 +1,12 @@
+<launch>
+	<node
+	name = "turtle_publisher"
+	type = "turtle_publisher_node"
+	pkg = "turtle_publisher"
+	output = "screen"
+	respawn = "true"
+	>
+	</node>
+	
+
+</launch>
